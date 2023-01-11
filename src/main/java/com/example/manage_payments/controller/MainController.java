@@ -4,7 +4,9 @@ import com.example.manage_payments.model.Post;
 import com.example.manage_payments.service.CreatePaymentService;
 import com.example.manage_payments.service.GetStatusPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
@@ -19,7 +21,7 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public Post getStatusPayment(@RequestBody Post post){
+    public Post getStatusPayment(@RequestBody Post post) {
         String payment = createPaymentService.createPayment(post.getName(), post.getCost());
         String status = getStatusPaymentService.getStatus(payment);
         post.setStatus(status);
